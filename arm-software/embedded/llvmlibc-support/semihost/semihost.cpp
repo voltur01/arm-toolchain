@@ -45,6 +45,11 @@ void __llvm_libc_exit(int status) {
   __builtin_unreachable(); /* semihosting call doesn't return */
 }
 
+void __llvm_libc_exit(int status) {
+  // TODO: Implement cleanup required by exit(): destructors, atexit, etc
+  semihosting_call_exit(status);
+}
+
 struct __llvm_libc_stdio_cookie __llvm_libc_stdin_cookie;
 struct __llvm_libc_stdio_cookie __llvm_libc_stdout_cookie;
 struct __llvm_libc_stdio_cookie __llvm_libc_stderr_cookie;
